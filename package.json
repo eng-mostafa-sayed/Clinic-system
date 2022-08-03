@@ -4,14 +4,12 @@
   "description": "clinical system",
   "main": "index.js",
   "engines": {
-    "node": "16.10.0",
-    "npm": ">=6.0.0"
+    "node": "16.x"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "nodemon index.js",
     "dev": "nodemon index.js",
-    "server": "nodemon index.js",
     "heroku-postbuild": "npm run dev"
   },
   "author": "Mostafa Sayed",
