@@ -17,17 +17,20 @@ class Patient {
   };
   static addCheck = async (req, res) => {
     try {
+      // res.send(req.body);
       const patientid = await req.headers.id;
       const patient = await patientModel.findById(patientid);
       ////how to push the check data here ?????????
-      patientModel.updateOne(
-        { _id: patientid },
-        {
-          $push: {
-            allChecks: { $each: await req.body },
-          },
-        }
-      );
+      // patientModel.updateOne(
+      //   { _id: patientid },
+      //   {
+      //     $push: {
+      //       allChecks: { $each: await req.body },
+      //     },
+      //   }
+      // );
+      patient.allChecks.push(req.body);
+      await patient.save();
       responseGenerator(res, 200, patient, "patient checked successfully");
     } catch (e) {
       responseGenerator(res, 400, e.message, "checking failed");
