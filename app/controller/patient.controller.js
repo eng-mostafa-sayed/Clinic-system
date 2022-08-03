@@ -19,7 +19,7 @@ class Patient {
     try {
       const patientid = await req.headers.id;
       const patient = await patientModel.findById(patientid);
-      ////how to push the check data here
+      ////how to push the check data here ?????????
       patientModel.updateOne(
         { _id: patientid },
         {
