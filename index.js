@@ -15,12 +15,11 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 app.use("/api/doctor", doctorRoutes);
-
 app.use("/api/patient", patientRoutes);
 
 //error handling for non intiated routes
 app.all("*", (req, res) => {
-  helperMethod.resGenerator(res, 404, "Invalid url", "not found");
+  helperMethod.responseGenerator(res, 404, "Invalid url", "not found");
 });
 app.listen(process.env.PORT, () =>
   console.log(`http://localhost:${process.env.PORT}`)
