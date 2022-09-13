@@ -15,7 +15,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 app.use("/api/doctor", doctorRoutes);
-app.use("/api/patient", patientRoutes);
+app.use("/api/allpatients", patientRoutes);
 
 //error handling for non intiated routes
 app.all("*", (req, res) => {

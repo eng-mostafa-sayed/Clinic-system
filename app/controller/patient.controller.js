@@ -36,6 +36,40 @@ class Patient {
       responseGenerator(res, 400, e.message, "checking failed");
     }
   };
+  static getAllPatients = async (req, res) => {
+    try {
+      const patients = await patientModel.find().sort({ name: 1 });
+      responseGenerator(res, 200, patients, "data fetched");
+    } catch (e) {
+      responseGenerator(res, 500, e.message, "error in data");
+    }
+  };
+  static getSinglePatient = async (req, res) => {
+    try {
+      const patient = await patientModel.findById(req.params.id);
+      if (!patient) throw new Error("patient not found");
+      responseGenerator(res, 200, patient, "data fetched");
+    } catch (e) {
+      responseGenerator(res, 500, e.message, "error in data");
+    }
+  };
+  static deleteSinglePatient = async (req, res) => {
+    try {
+      const patient = await patientModel.findByIdAndDelete(req.params.id);
+      if (!patient) throw new Error("patient not found");
+      responseGenerator(res, 200, patient, "data deleted");
+    } catch (e) {
+      responseGenerator(res, 500, e.message, "error in data");
+    }
+  };
+  static getLatestPatients = async (req, res) => {
+    try {
+      const patients = await patientModel.find({ timestamps: Date.getDate() });
+      responseGenerator(res, 200, patients, "data fetched");
+    } catch (e) {
+      responseGenerator(res, 500, e.message, "error in data");
+    }
+  };
 }
 
 module.exports = Patient;
