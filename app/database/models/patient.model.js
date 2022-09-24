@@ -1,4 +1,5 @@
 const mongoose = require("mongoose");
+
 const patientSchema = mongoose.Schema(
   {
     doctorId: {
@@ -52,14 +53,33 @@ const patientSchema = mongoose.Schema(
             },
           ],
           date: {
-            type: Date,
-            default: Date.Now,
+            type: String,
+            default: `${new Date()
+              .toISOString()
+              .replace(/T/, " ")
+              .replace(/\..+/, "")}`,
           },
         },
       },
     ],
     visualAcuity: { type: String },
+
     //mediaclHistory: {},
+    date: {
+      type: String,
+      default: `${new Date()
+        .toISOString()
+        .replace(/T/, " ")
+        .replace(/\..+/, "")}`,
+    },
+    waiting: {
+      type: Boolean,
+      default: false,
+    },
+    waitingTime: {
+      type: String,
+      default: "",
+    },
   },
   { timestamps: true }
 );
@@ -82,6 +102,19 @@ patientSchema.methods.generateToken = async function () {
   user.tokens = user.tokens.concat({ token });
   await user.save();
   return token;
+};
+patientSchema.statics.checkDate = async () => {
+  const patientData = await Patient.find();
+
+  let d = patientData.filter((patient) =>
+    patient.date.includes(
+      "2022-09-25"
+      //`${new Date().toISOString().replace(/T/, " ").replace(/\..+/, "")}`
+    )
+  );
+  console.log(d);
+  if (!d) throw new Error("no patients");
+  return d;
 };
 const Patient = mongoose.model("Patient", patientSchema);
 module.exports = Patient;

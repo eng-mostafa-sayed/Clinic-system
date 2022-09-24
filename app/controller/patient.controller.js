@@ -18,8 +18,7 @@ class Patient {
   static addCheck = async (req, res) => {
     try {
       // res.send(req.body);
-      const patientid = await req.headers.id;
-      const patient = await patientModel.findById(patientid);
+      const patient = await patientModel.findById(req.params.id);
       ////how to push the check data here ?????????
       // patientModel.updateOne(
       //   { _id: patientid },
@@ -30,8 +29,15 @@ class Patient {
       //   }
       // );
       patient.allChecks.push(req.body);
+      patient.waiting = false;
+      patient.waitingTime = "";
       await patient.save();
-      responseGenerator(res, 200, patient, "patient checked successfully");
+      await responseGenerator(
+        res,
+        200,
+        patient,
+        "patient checked successfully"
+      );
     } catch (e) {
       responseGenerator(res, 400, e.message, "checking failed");
     }
@@ -64,8 +70,51 @@ class Patient {
   };
   static getLatestPatients = async (req, res) => {
     try {
-      const patients = await patientModel.find({ timestamps: Date.getDate() });
-      responseGenerator(res, 200, patients, "data fetched");
+      const patientData = await patientModel.find().sort({ date: 1 });
+
+      let data = patientData.filter((patient) =>
+        patient.date.includes(
+          //"2022-09-25 "
+          `${new Date()
+            .toISOString()
+            .replace(/T/, " ")
+            .replace(/\..+/, "")
+            .substring(0, 11)}`
+        )
+      );
+      if (!data) throw new Error("no patients");
+      responseGenerator(res, 200, data, "data fetched");
+    } catch (e) {
+      responseGenerator(res, 500, e.message, "error in data");
+    }
+  };
+  static addToWaitingList = async (req, res) => {
+    try {
+      const patientData = await patientModel
+        .findByIdAndUpdate(req.params.id, {
+          waiting: true,
+          waitingTime: `${new Date()
+            .toISOString()
+            .replace(/T/, " ")
+            .replace(/\..+/, "")
+            .substring(10)}`,
+        })
+        .sort({ waitingTime: 1 });
+
+      if (!patientData) throw new Error("no patients");
+      responseGenerator(res, 200, patientData, "data fetched");
+    } catch (e) {
+      responseGenerator(res, 500, e.message, "error in data");
+    }
+  };
+  static getWaitingList = async (req, res) => {
+    try {
+      const patientData = await patientModel
+        .find({ waiting: true })
+        .sort({ waitingTime: 1 });
+
+      if (!patientData) throw new Error("no patients");
+      responseGenerator(res, 200, patientData, "data fetched");
     } catch (e) {
       responseGenerator(res, 500, e.message, "error in data");
     }
