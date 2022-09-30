@@ -4,8 +4,9 @@ const express = require("express");
 const cors = require("cors");
 //import routes
 const doctorRoutes = require("./app/routes/doctor.routes");
-
 const patientRoutes = require("./app/routes/patient.routes");
+const drugRoutes = require("./app/routes/drug.routes");
+
 const helperMethod = require("./app/helpers/response.generator.helper");
 //create express app
 const app = express();
@@ -16,6 +17,7 @@ app.use(express.urlencoded({ extended: true }));
 
 app.use("/api/doctor", doctorRoutes);
 app.use("/api/allpatients", patientRoutes);
+app.use("/api/drugs", drugRoutes);
 
 //error handling for non intiated routes
 app.all("*", (req, res) => {
