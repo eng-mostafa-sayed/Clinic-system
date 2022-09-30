@@ -12,6 +12,7 @@ router.get("/waiting", auth, Patient.getWaitingList);
 router.post("/waiting/:id", auth, Patient.addToWaitingList);
 
 router.put("/:id", auth, Patient.addCheck);
+router.put("/v/:id", auth, Patient.addVisualAcuity); // to add the visual acuity
 router.get("/:id", auth, Patient.getSinglePatient);
 router.delete("/:id", auth, Patient.deleteSinglePatient);
 

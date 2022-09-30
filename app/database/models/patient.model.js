@@ -62,7 +62,32 @@ const patientSchema = mongoose.Schema(
         },
       },
     ],
-    visualAcuity: { type: String },
+    visualAcuity: {
+      right: {
+        d: {
+          sph: { type: String, default: "none" },
+          cyl: { type: String, default: "none" },
+          axis: { type: String, default: "none" },
+        },
+        r: {
+          sph: { type: String, default: "none" },
+          cyl: { type: String, default: "none" },
+          axis: { type: String, default: "none" },
+        },
+      },
+      left: {
+        d: {
+          sph: { type: String, default: "none" },
+          cyl: { type: String, default: "none" },
+          axis: { type: String, default: "none" },
+        },
+        r: {
+          sph: { type: String, default: "none" },
+          cyl: { type: String, default: "none" },
+          axis: { type: String, default: "none" },
+        },
+      },
+    },
 
     //mediaclHistory: {},
     date: {

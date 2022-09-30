@@ -42,6 +42,22 @@ class Patient {
       responseGenerator(res, 400, e.message, "checking failed");
     }
   };
+  static addVisualAcuity = async (req, res) => {
+    try {
+      const patient = await patientModel.findByIdAndUpdate(req.params.id, {
+        visualAcuity: req.body,
+      });
+      await patient.save();
+      await responseGenerator(
+        res,
+        200,
+        await patientModel.findById(req.params.id),
+        "patient's visualAcuity added successfully"
+      );
+    } catch (e) {
+      responseGenerator(res, 400, e.message, "checking failed");
+    }
+  };
   static getAllPatients = async (req, res) => {
     try {
       const patients = await patientModel.find().sort({ name: 1 });
