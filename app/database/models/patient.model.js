@@ -63,6 +63,14 @@ const patientSchema = mongoose.Schema(
       },
     ],
     visualAcuity: {
+      ipd: {
+        far: { type: String, default: "none" },
+        near: { type: String, default: "none" },
+      },
+      bcva: {
+        rt: { type: String, default: "none" },
+        lt: { type: String, default: "none" },
+      },
       right: {
         d: {
           sph: { type: String, default: "none" },
