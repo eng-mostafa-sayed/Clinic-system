@@ -11,6 +11,7 @@ const drugSchema = mongoose.Schema(
     name: {
       type: String,
       lowercase: true,
+      trim: true,
     },
   },
   { timestamps: true }
