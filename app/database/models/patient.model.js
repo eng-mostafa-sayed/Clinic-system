@@ -63,38 +63,28 @@ const patientSchema = mongoose.Schema(
       },
     ],
     visualAcuity: {
-      ipd: {
-        far: { type: String, default: "none" },
-        near: { type: String, default: "none" },
-      },
-      bcva: {
-        rt: { type: String, default: "none" },
-        lt: { type: String, default: "none" },
-      },
-      right: {
-        d: {
-          sph: { type: String, default: "none" },
-          cyl: { type: String, default: "none" },
-          axis: { type: String, default: "none" },
-        },
-        r: {
-          sph: { type: String, default: "none" },
-          cyl: { type: String, default: "none" },
-          axis: { type: String, default: "none" },
-        },
-      },
-      left: {
-        d: {
-          sph: { type: String, default: "none" },
-          cyl: { type: String, default: "none" },
-          axis: { type: String, default: "none" },
-        },
-        r: {
-          sph: { type: String, default: "none" },
-          cyl: { type: String, default: "none" },
-          axis: { type: String, default: "none" },
-        },
-      },
+      //ipd
+      far: { type: String, default: "none" },
+      near: { type: String, default: "none" },
+      //bcva
+      rt: { type: String, default: "none" },
+      lt: { type: String, default: "none" },
+      //right // d
+      rdsph: { type: String, default: "none" },
+      rdcyl: { type: String, default: "none" },
+      rdaxis: { type: String, default: "none" },
+      //right // r
+      rrsph: { type: String, default: "none" },
+      rrcyl: { type: String, default: "none" },
+      rraxis: { type: String, default: "none" },
+      //left // d
+      ldsph: { type: String, default: "none" },
+      ldcyl: { type: String, default: "none" },
+      ldaxis: { type: String, default: "none" },
+      //left // r
+      lrsph: { type: String, default: "none" },
+      lrcyl: { type: String, default: "none" },
+      lraxis: { type: String, default: "none" },
     },
 
     //mediaclHistory: {},
