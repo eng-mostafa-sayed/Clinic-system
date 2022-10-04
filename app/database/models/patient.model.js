@@ -51,6 +51,7 @@ const patientSchema = mongoose.Schema(
               noOfTakes: { type: String },
             },
           ],
+          note: { type: String },
           date: {
             type: String,
             default: `${new Date()
@@ -84,6 +85,7 @@ const patientSchema = mongoose.Schema(
       lrsph: { type: String, default: "none" },
       lrcyl: { type: String, default: "none" },
       lraxis: { type: String, default: "none" },
+      note: { type: String },
     },
 
     //mediaclHistory: {},
