@@ -49,7 +49,6 @@ const patientSchema = mongoose.Schema(
               treatment: { type: String },
               period: { type: String },
               noOfTakes: { type: String },
-              notes: { type: String },
             },
           ],
           date: {
