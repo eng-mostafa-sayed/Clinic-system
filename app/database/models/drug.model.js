@@ -5,7 +5,7 @@ const drugSchema = mongoose.Schema(
     type: {
       type: String,
       trim: true,
-      enum: ["drops", "ointment", "tablets", "syringe"],
+      enum: ["drops", "ointment", "tablets", "vial", "ampule"],
       lowercase: true,
     },
     name: {

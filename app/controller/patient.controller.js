@@ -47,6 +47,9 @@ class Patient {
       const patient = await patientModel.findByIdAndUpdate(req.params.id, {
         visualAcuity: req.body,
       });
+      /// to remove the patient from the waiting
+      patient.waiting = false;
+      patient.waitingTime = "";
       await patient.save();
       await responseGenerator(
         res,
@@ -60,7 +63,7 @@ class Patient {
   };
   static getAllPatients = async (req, res) => {
     try {
-      const patients = await patientModel.find().sort({ name: 1 });
+      const patients = await patientModel.find().sort({ createdAt: 1 });
       responseGenerator(res, 200, patients, "data fetched");
     } catch (e) {
       responseGenerator(res, 500, e.message, "error in data");
@@ -108,6 +111,7 @@ class Patient {
     try {
       const patientData = await patientModel
         .findByIdAndUpdate(req.params.id, {
+          appointmentType: req.body,
           waiting: true,
           waitingTime: `${new Date()
             .toISOString()
@@ -130,6 +134,18 @@ class Patient {
         .sort({ waitingTime: 1 });
 
       if (!patientData) throw new Error("no patients");
+      responseGenerator(res, 200, patientData, "data fetched");
+    } catch (e) {
+      responseGenerator(res, 500, e.message, "error in data");
+    }
+  };
+  static removeFromWaitingList = async (req, res) => {
+    try {
+      const patientData = await patientModel.findByIdAndUpdate(req.params.id, {
+        waiting: false,
+        waitingTime: "",
+      });
+      if (!patientData) throw new Error("no patient");
       responseGenerator(res, 200, patientData, "data fetched");
     } catch (e) {
       responseGenerator(res, 500, e.message, "error in data");

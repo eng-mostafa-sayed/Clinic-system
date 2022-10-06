@@ -41,6 +41,13 @@ const patientSchema = mongoose.Schema(
       type: Boolean,
       default: false,
     },
+    appointmentType: {
+      type: String,
+      default: "none",
+      trim: true,
+      lowercase: true,
+      enum: ["appointment", "consultation", "none"],
+    },
     allChecks: [
       {
         check: {
@@ -67,8 +74,8 @@ const patientSchema = mongoose.Schema(
       far: { type: String, default: "none" },
       near: { type: String, default: "none" },
       //bcva
-      rt: { type: String, default: "none" },
-      lt: { type: String, default: "none" },
+      rbcva: { type: String, default: "none" },
+      lbcva: { type: String, default: "none" },
       //right // d
       rdsph: { type: String, default: "none" },
       rdcyl: { type: String, default: "none" },
@@ -87,8 +94,9 @@ const patientSchema = mongoose.Schema(
       lraxis: { type: String, default: "none" },
       note: { type: String },
     },
-
-    //mediaclHistory: {},
+    diagnoses: { type: String },
+    mediaclHistory: { type: string }, // without print
+    //mediaclHistory: {},// diagnoses //disases
     date: {
       type: String,
       default: `${new Date()
