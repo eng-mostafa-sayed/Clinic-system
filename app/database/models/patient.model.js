@@ -95,7 +95,7 @@ const patientSchema = mongoose.Schema(
       note: { type: String },
     },
     diagnoses: { type: String },
-    mediaclHistory: { type: string }, // without print
+    mediaclHistory: { type: String }, // without print
     //mediaclHistory: {},// diagnoses //disases
     date: {
       type: String,
