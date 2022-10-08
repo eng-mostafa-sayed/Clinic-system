@@ -111,7 +111,7 @@ class Patient {
     try {
       const patientData = await patientModel
         .findByIdAndUpdate(req.params.id, {
-          appointmentType: req.body,
+          appointmentType: req.body.appointmentType,
           waiting: true,
           waitingTime: `${new Date()
             .toISOString()
