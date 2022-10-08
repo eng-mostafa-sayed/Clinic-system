@@ -90,7 +90,9 @@ doctorSchema.pre("save", async function (next) {
 doctorSchema.methods.generateToken = async function () {
   const Doctor = this;
   // if(user.tokens>3)
-  const token = jwt.sign({ _id: Doctor._id }, process.env.JWTKEY);
+  const token = jwt.sign({ _id: Doctor._id }, process.env.JWTKEY, {
+    expiresIn: process.env.JWT_EXPIRES_IN,
+  });
   Doctor.tokens = Doctor.tokens.concat({ token });
   await Doctor.save();
   return token;
