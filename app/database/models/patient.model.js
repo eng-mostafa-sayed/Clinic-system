@@ -61,6 +61,7 @@ const patientSchema = mongoose.Schema(
             },
           ],
           note: { type: String },
+          Diagnosis: { type: String },
           date: {
             type: String,
             default: `${new Date()
@@ -96,9 +97,8 @@ const patientSchema = mongoose.Schema(
       lraxis: { type: String, default: "-----" },
       note: { type: String },
     },
-    diagnoses: { type: String },
     mediaclHistory: { type: String }, // without print
-    //mediaclHistory: {},// diagnoses //disases
+    //mediaclHistory: {},// Diagnosis //disases
     date: {
       type: String,
       default: `${new Date()
