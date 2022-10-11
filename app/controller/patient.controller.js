@@ -28,7 +28,8 @@ class Patient {
       //     },
       //   }
       // );
-      patient.allChecks.push(req.body);
+      console.log(patient);
+      await patient.allChecks.push(req.body);
       patient.waiting = false;
       patient.waitingTime = "";
       await patient.save();
