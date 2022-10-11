@@ -11,7 +11,7 @@ const drugSchema = mongoose.Schema(
         "tablets",
         "vial",
         "ampule",
-        "SDU",
+        "sdu",
         "Capsule",
       ],
       lowercase: true,
