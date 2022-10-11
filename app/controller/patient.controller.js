@@ -151,6 +151,22 @@ class Patient {
       responseGenerator(res, 500, e.message, "error in data");
     }
   };
+  static editPatient = async (req, res) => {
+    try {
+      patientData = await patientModel.findByIdAndUpdate(req.params.id, {
+        name: req.body.name,
+        phoneNumber: req.body.phoneNumber,
+        age: req.body.age,
+        gender: req.body.gender,
+        fileNo: req.body.fileNo,
+      });
+
+      if (!patientData) throw new Error("no patient");
+      responseGenerator(res, 200, patientData, "patient edited successfully");
+    } catch (e) {
+      responseGenerator(res, 500, e.message, "error in data");
+    }
+  };
 }
 
 module.exports = Patient;

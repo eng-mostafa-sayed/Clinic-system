@@ -13,6 +13,7 @@ router.post("/waiting/:id", auth, Patient.addToWaitingList);
 router.delete("/waiting/:id", auth, Patient.removeFromWaitingList);
 
 router.put("/:id", auth, Patient.addCheck);
+router.post("/:id", auth, Patient.editPatient);
 router.put("/v/:id", auth, Patient.addVisualAcuity); // to add the visual acuity
 router.get("/:id", auth, Patient.getSinglePatient);
 router.delete("/:id", auth, Patient.deleteSinglePatient);
