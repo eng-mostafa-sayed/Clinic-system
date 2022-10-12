@@ -57,10 +57,10 @@ const patientSchema = mongoose.Schema(
               period: { type: String },
               noOfTakes: { type: String },
               type: { type: String },
-              note: { type: String },
+              note: { type: String, default: "" },
             },
           ],
-          note: { type: String },
+          note: { type: String, default: "" },
           Diagnosis: { type: String },
           date: {
             type: String,
@@ -95,7 +95,7 @@ const patientSchema = mongoose.Schema(
       lrsph: { type: String, default: "........" },
       lrcyl: { type: String, default: "........" },
       lraxis: { type: String, default: "........" },
-      note: { type: String },
+      note: { type: String, default: "" },
     },
     mediaclHistory: { type: String }, // without print
     //mediaclHistory: {},// Diagnosis //disases
