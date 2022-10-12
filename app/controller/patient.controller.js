@@ -158,7 +158,7 @@ class Patient {
         phoneNumber: req.body.phoneNumber,
         age: req.body.age,
         gender: req.body.gender,
-        fileNo: req.body.fileNo,
+        appointmentType: req.body.appointmentType,
       });
       if (!patientData) throw new Error("no patient");
       responseGenerator(res, 200, patientData, "patient edited successfully");
