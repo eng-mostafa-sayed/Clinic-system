@@ -91,15 +91,16 @@ class Patient {
     try {
       const patientData = await patientModel.find().sort({ date: 1 });
 
-      let data = patientData.filter((patient) =>
-        patient.date.includes(
-          //"2022-09-25 "
-          `${new Date()
-            .toISOString()
-            .replace(/T/, " ")
-            .replace(/\..+/, "")
-            .substring(0, 11)}`
-        )
+      let data = patientData.filter(
+        (patient) =>
+          patient.date.includes(
+            //"2022-09-25 "
+            `${new Date()
+              .toISOString()
+              .replace(/T/, " ")
+              .replace(/\..+/, "")
+              .substring(0, 11)}`
+          ) && !patient.waiting
       );
       if (!data) throw new Error("no patients");
       responseGenerator(res, 200, data, "data fetched");
