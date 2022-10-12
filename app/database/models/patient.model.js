@@ -53,10 +53,10 @@ const patientSchema = mongoose.Schema(
         check: {
           treatments: [
             {
+              type: { type: String },
               treatment: { type: String },
               period: { type: String },
               noOfTakes: { type: String },
-              type: { type: String },
               note: { type: String, default: "", trim: true },
             },
           ],
