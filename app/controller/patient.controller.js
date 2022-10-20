@@ -33,15 +33,20 @@ class Patient {
         await patient.allChecks.push(req.body);
         patient.waiting = false;
         patient.waitingTime = "";
+        patient.date = new Date()
+          .toISOString()
+          .replace(/T/, " ")
+          .replace(/\..+/, "")
+          .substring(0, 11);
         await patient.save();
         await responseGenerator(res, 200, {}, "patient checked successfully");
       }
       //if not in waiting list
-      {
+      else {
         await responseGenerator(
           res,
           401,
-          patient,
+          {},
           "patient not in the waiting list"
         );
       }
