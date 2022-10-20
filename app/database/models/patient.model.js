@@ -60,7 +60,7 @@ const patientSchema = mongoose.Schema(
           },
         ],
         note: { type: String, default: "", trim: true },
-        iagnosis: { type: String },
+        diagnosis: { type: String },
         date: {
           type: String,
           default: `${new Date()
