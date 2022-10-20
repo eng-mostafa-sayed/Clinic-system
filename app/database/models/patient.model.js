@@ -50,25 +50,23 @@ const patientSchema = mongoose.Schema(
     },
     allChecks: [
       {
-        check: {
-          treatments: [
-            {
-              type: { type: String },
-              treatment: { type: String },
-              period: { type: String },
-              noOfTakes: { type: String },
-              note: { type: String, default: "", trim: true },
-            },
-          ],
-          note: { type: String, default: "", trim: true },
-          diagnosis: { type: String },
-          date: {
-            type: String,
-            default: `${new Date()
-              .toISOString()
-              .replace(/T/, " ")
-              .replace(/\..+/, "")}`,
+        treatments: [
+          {
+            type: { type: String },
+            treatment: { type: String },
+            period: { type: String },
+            noOfTakes: { type: String },
+            note: { type: String, default: "", trim: true },
           },
+        ],
+        note: { type: String, default: "", trim: true },
+        iagnosis: { type: String },
+        date: {
+          type: String,
+          default: `${new Date()
+            .toISOString()
+            .replace(/T/, " ")
+            .replace(/\..+/, "")}`,
         },
       },
     ],
