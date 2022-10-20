@@ -152,6 +152,11 @@ class Patient {
       const patientData = await patientModel.findByIdAndUpdate(req.params.id, {
         waiting: false,
         waitingTime: "",
+        date: new Date()
+          .toISOString()
+          .replace(/T/, " ")
+          .replace(/\..+/, "")
+          .substring(0, 11),
       });
       if (!patientData) throw new Error("no patient");
       responseGenerator(res, 200, patientData, "data fetched");
