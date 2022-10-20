@@ -54,9 +54,9 @@ class Patient {
       const patient = await patientModel.findByIdAndUpdate(req.params.id, {
         visualAcuity: req.body,
       });
-      /// to remove the patient from the waiting
-      patient.waiting = false;
-      patient.waitingTime = "";
+      // /// to remove the patient from the waiting
+      // patient.waiting = false;
+      // patient.waitingTime = "";
       await patient.save();
       await responseGenerator(
         res,
