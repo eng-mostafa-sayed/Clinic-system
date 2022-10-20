@@ -28,16 +28,23 @@ class Patient {
       //     },
       //   }
       // );
-      await patient.allChecks.push(req.body);
-      patient.waiting = false;
-      patient.waitingTime = "";
-      await patient.save();
-      await responseGenerator(
-        res,
-        200,
-        patient,
-        "patient checked successfully"
-      );
+      //check if the patient in the waiting list or not
+      if (patient.waiting) {
+        await patient.allChecks.push(req.body);
+        patient.waiting = false;
+        patient.waitingTime = "";
+        await patient.save();
+        await responseGenerator(res, 200, {}, "patient checked successfully");
+      }
+      //if not in waiting list
+      {
+        await responseGenerator(
+          res,
+          400,
+          patient,
+          "patient not in the waiting list"
+        );
+      }
     } catch (e) {
       responseGenerator(res, 400, e.message, "checking failed");
     }
