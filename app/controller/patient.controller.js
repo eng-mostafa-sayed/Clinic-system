@@ -40,7 +40,7 @@ class Patient {
       {
         await responseGenerator(
           res,
-          400,
+          401,
           patient,
           "patient not in the waiting list"
         );
