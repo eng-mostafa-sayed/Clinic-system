@@ -11,6 +11,7 @@ router.get("/last", auth, Patient.getLatestPatients);
 router.get("/waiting", auth, Patient.getWaitingList);
 router.post("/waiting/:id", auth, Patient.addToWaitingList);
 router.delete("/waiting/:id", auth, Patient.removeFromWaitingList);
+router.put("/waiting/:id", auth, Patient.cancelAppointment); //to cancel the appointment from the nurse page
 
 router.put("/:id", auth, Patient.addCheck);
 router.post("/:id", auth, Patient.editPatient);

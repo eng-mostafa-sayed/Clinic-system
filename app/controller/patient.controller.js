@@ -184,6 +184,23 @@ class Patient {
       responseGenerator(res, 500, e.message, "error in data");
     }
   };
+  static cancelAppointment = async (req, res) => {
+    try {
+      const patientData = await patientModel.findByIdAndUpdate(req.params.id, {
+        waiting: false,
+        waitingTime: "",
+      });
+      if (!patientData) throw new Error("no patient");
+      responseGenerator(res, 200, {}, "appointment cancelled successfully");
+    } catch (e) {
+      responseGenerator(
+        res,
+        500,
+        e.message,
+        "error while cancelling the appointment"
+      );
+    }
+  };
 }
 
 module.exports = Patient;
