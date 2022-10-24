@@ -18,7 +18,7 @@ const patientSchema = mongoose.Schema(
       max: 100,
     },
     fileNo: {
-      type: Number,
+      type: String,
       required: true,
       trim: true,
       unique: true,
