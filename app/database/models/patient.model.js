@@ -98,10 +98,9 @@ const patientSchema = mongoose.Schema(
     //mediaclHistory: {},// Diagnosis //disases
     date: {
       type: String,
-      default: `${new Date()
-        .toISOString()
-        .replace(/T/, " ")
-        .replace(/\..+/, "")}`,
+      default: `${new Date().toLocaleDateString("en-EG", {
+        timeZone: "Africa/Cairo",
+      })}`,
     },
     waiting: {
       type: Boolean,
