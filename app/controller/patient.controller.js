@@ -38,7 +38,7 @@ class Patient {
         //   .replace(/T/, " ")
         //   .replace(/\..+/, "")
         //   .substring(0, 11);
-        patient.date = new Date().toLocaleTimeString("en-EG", {
+        patient.date = new Date().toLocaleDateString("en-EG", {
           timeZone: "Africa/Cairo",
         });
         //patient.date = `${new Date().toUTCString()}`;
@@ -110,12 +110,15 @@ class Patient {
       let data = patientData.filter(
         (patient) =>
           patient.date.includes(
-            //"2022-09-25 "
-            `${new Date()
-              .toISOString()
-              .replace(/T/, " ")
-              .replace(/\..+/, "")
-              .substring(0, 11)}`
+            // this is to delete the time from the datre object
+            // `${new Date()
+            //   .toISOString()
+            //   .replace(/T/, " ")
+            //   .replace(/\..+/, "")
+            //   .substring(0, 11)}`
+            `${new Date().toLocaleDateString("en-EG", {
+              timeZone: "Africa/Cairo",
+            })} `
           ) && !patient.waiting
       );
       if (!data) throw new Error("no patients");
@@ -130,11 +133,14 @@ class Patient {
         .findByIdAndUpdate(req.params.id, {
           appointmentType: req.body.appointmentType,
           waiting: true,
-          waitingTime: `${new Date()
-            .toISOString()
-            .replace(/T/, " ")
-            .replace(/\..+/, "")
-            .substring(10)}`,
+          // waitingTime: `${new Date()
+          //   .toISOString()
+          //   .replace(/T/, " ")
+          //   .replace(/\..+/, "")
+          //   .substring(10)}`,
+          waitingTime: `${new Date().toLocaleTimeString("en-EG", {
+            timeZone: "Africa/Cairo",
+          })}`,
         })
         .sort({ waitingTime: 1 });
 
