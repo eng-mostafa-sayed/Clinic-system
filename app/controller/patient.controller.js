@@ -39,7 +39,7 @@ class Patient {
         //   .replace(/\..+/, "")
         //   .substring(0, 11);
         patient.date = new Date().toLocaleDateString("en-EG", {
-          timeZone: "Africa/Egypt",
+          timeZone: "Africa/Cairo",
         });
         //patient.date = `${new Date().toUTCString()}`;
         await patient.save();
