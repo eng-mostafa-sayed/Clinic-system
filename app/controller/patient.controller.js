@@ -38,9 +38,7 @@ class Patient {
         //   .replace(/T/, " ")
         //   .replace(/\..+/, "")
         //   .substring(0, 11);
-        patient.date = new Date().toLocaleDateString("ar-EG", {
-          timeZone: "Africa/Egypt",
-        });
+        patient.date = new Date().toLocaleDateString("ar-EG");
         await patient.save();
         await responseGenerator(res, 200, {}, "patient checked successfully");
       }
