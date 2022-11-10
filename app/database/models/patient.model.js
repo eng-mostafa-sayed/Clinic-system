@@ -100,6 +100,8 @@ const patientSchema = mongoose.Schema(
       type: String,
       default: `${new Date().toLocaleDateString("en-EG", {
         timeZone: "Africa/Cairo",
+      })} ${new Date().toLocaleTimeString("en-EG", {
+        timeZone: "Africa/Cairo",
       })}`,
     },
     waiting: {
