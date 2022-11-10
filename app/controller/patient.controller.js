@@ -39,7 +39,7 @@ class Patient {
         //   .replace(/\..+/, "")
         //   .substring(0, 11);
         //patient.date = new Date().toLocaleDateString("ar-EG");
-        patient.date = new Date().toLocaleTimeString("ar-EG");
+        patient.date = `${new Date().toUTCString()}`;
         await patient.save();
         await responseGenerator(res, 200, {}, "patient checked successfully");
       }
