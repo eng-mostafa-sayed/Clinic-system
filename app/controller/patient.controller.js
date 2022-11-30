@@ -123,6 +123,7 @@ class Patient {
       );
       if (!data) throw new Error("no patients");
       responseGenerator(res, 200, data, "data fetched");
+      console.login(data);
     } catch (e) {
       responseGenerator(res, 500, e.message, "error in data");
     }
