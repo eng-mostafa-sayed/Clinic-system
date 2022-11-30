@@ -79,7 +79,7 @@ class Patient {
   };
   static getAllPatients = async (req, res) => {
     try {
-      const patients = await patientModel.find().sort({ updatedAt: 1 });
+      const patients = await patientModel.find().sort({ updatedAt: -1 });
       responseGenerator(res, 200, patients, "data fetched");
     } catch (e) {
       responseGenerator(res, 500, e.message, "error in data");
