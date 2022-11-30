@@ -115,7 +115,7 @@ class Patient {
       })}`;
       let data = patientData.filter(
         (patient) =>
-          patient.date.trim() === today2.trim() &&
+          patient.date.trim().includes(today2.trim()) &&
           // this is to delete the time from the datre object
           // `${new Date()
           //   .toISOString()
