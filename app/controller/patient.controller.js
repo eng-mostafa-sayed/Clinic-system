@@ -107,12 +107,15 @@ class Patient {
     try {
       const patientData = await patientModel.find().sort({ date: 1 });
       ///today's date
-      let today = `${new Date().toLocaleDateString("en-EG", {
+      let today1 = `${new Date().toLocaleDateString("en-EG", {
+        timeZone: "Africa/Cairo",
+      })}`;
+      let today2 = `${new Date().toLocaleDateString("en-EG", {
         timeZone: "Africa/Cairo",
       })}`;
       let data = patientData.filter(
         (patient) =>
-          patient.date === today &&
+          patient.date.trim() === today1.trim() &&
           // this is to delete the time from the datre object
           // `${new Date()
           //   .toISOString()
