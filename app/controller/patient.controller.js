@@ -106,27 +106,29 @@ class Patient {
   static getLatestPatients = async (req, res) => {
     try {
       const patientData = await patientModel.find().sort({ date: 1 });
-
+      ///today's date
+      let today = `${new Date().toLocaleDateString("en-EG", {
+        timeZone: "Africa/Cairo",
+      })}`;
       let data = patientData.filter(
         (patient) =>
-          patient.date
-            .includes
-            // this is to delete the time from the datre object
-            // `${new Date()
-            //   .toISOString()
-            //   .replace(/T/, " ")
-            //   .replace(/\..+/, "")
-            //   .substring(0, 11)}`
-            // `${new Date().toLocaleDateString("en-EG", {
-            //   timeZone: "Africa/Cairo",
-            // })} `
-            () && !patient.waiting
+          patient.date === today &&
+          // this is to delete the time from the datre object
+          // `${new Date()
+          //   .toISOString()
+          //   .replace(/T/, " ")
+          //   .replace(/\..+/, "")
+          //   .substring(0, 11)}`
+          !patient.waiting
+        // `${new Date().toLocaleDateString("en-EG", {
+        //   timeZone: "Africa/Cairo",
+        // })} `
       );
       if (!data) throw new Error("no patients");
       responseGenerator(res, 200, data, "data fetched");
-      console.login(data);
     } catch (e) {
       responseGenerator(res, 500, e.message, "error in data");
+      console.log(e);
     }
   };
   static addToWaitingList = async (req, res) => {
