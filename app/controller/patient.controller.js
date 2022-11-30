@@ -110,9 +110,11 @@ class Patient {
       let today1 = `${new Date().toLocaleDateString("en-EG", {
         timeZone: "Africa/Cairo",
       })}`;
-      let today2 = `${new Date().toLocaleDateString("en-EG", {
-        timeZone: "Africa/Cairo",
-      })}`;
+      let today2 = `${new Date()
+        .toISOString()
+        .replace(/T/, " ")
+        .replace(/\..+/, "")
+        .substring(0, 11)}`;
       let data = patientData.filter(
         (patient) =>
           patient.date.trim().includes(today2.trim()) &&
