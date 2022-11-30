@@ -111,14 +111,14 @@ class Patient {
         (patient) =>
           patient.date.includes(
             // this is to delete the time from the datre object
-            // `${new Date()
-            //   .toISOString()
-            //   .replace(/T/, " ")
-            //   .replace(/\..+/, "")
-            //   .substring(0, 11)}`
-            `${new Date().toLocaleDateString("en-EG", {
-              timeZone: "Africa/Cairo",
-            })} `
+            `${new Date()
+              .toISOString()
+              .replace(/T/, " ")
+              .replace(/\..+/, "")
+              .substring(0, 11)}`
+            // `${new Date().toLocaleDateString("en-EG", {
+            //   timeZone: "Africa/Cairo",
+            // })} `
           ) && !patient.waiting
       );
       if (!data) throw new Error("no patients");
