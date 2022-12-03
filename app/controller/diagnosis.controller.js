@@ -1,7 +1,7 @@
 const diagnosisModel = require("../database/models/diagnosis.model");
 const { responseGenerator } = require("../helpers/response.generator.helper");
 
-class diagnosis {
+class Diagnosis {
   static addDiagnosis = async (req, res) => {
     try {
       const diagnosisData = await new diagnosisModel({
@@ -36,7 +36,7 @@ class diagnosis {
       responseGenerator(res, 400, e.message, "checking failed");
     }
   };
-  static getAllDiagnosiss = async (req, res) => {
+  static getAllDiagnosis = async (req, res) => {
     try {
       const diagnosiss = await diagnosisModel.find().sort({ name: 1 });
       responseGenerator(res, 200, diagnosiss, "diagnosis's data fetched");
@@ -55,4 +55,4 @@ class diagnosis {
     }
   };
 }
-module.exports = diagnosis;
+module.exports = Diagnosis;

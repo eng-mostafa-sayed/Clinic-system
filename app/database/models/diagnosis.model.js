@@ -11,12 +11,12 @@ const diagnosisSchema = mongoose.Schema(
   { timestamps: true }
 );
 
-drugSchema.methods.toJSON = function () {
+diagnosisSchema.methods.toJSON = function () {
   const deleted = ["password", "__v"];
   const data = this.toObject();
   deleted.forEach((d) => delete data[d]);
   return data;
 };
 
-const Drug = mongoose.model("Diagnosis", diagnosisSchema);
-module.exports = Drug;
+const Diagnosis = mongoose.model("Diagnosis", diagnosisSchema);
+module.exports = Diagnosis;
