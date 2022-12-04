@@ -128,7 +128,7 @@ patientSchema.methods.generateToken = async function () {
   const user = this;
   // if(user.tokens>3)
   const token = jwt.sign({ _id: user._id }, process.env.JWTKEY, {
-    expiresIn: process.env.JWT_EXPIRES_IN,
+    expiresIn: process.env.JWT_EXPIRE,
   });
   user.tokens = user.tokens.concat({ token });
   await user.save();
