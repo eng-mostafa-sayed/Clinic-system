@@ -26,6 +26,6 @@ app.all("*", (req, res) => {
   helperMethod.responseGenerator(res, 404, "Invalid url", "not found");
 });
 process.env.TZ = "Africa/Egypt";
-app.listen(process.env.PORT, () =>
-  console.log(`http://localhost:${process.env.PORT}`)
-);
+app.listen(process.env.PORT, () => {
+  console.log(`http://localhost:${process.env.PORT}`);
+});
